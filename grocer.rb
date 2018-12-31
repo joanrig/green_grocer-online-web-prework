@@ -38,6 +38,11 @@ end
 # {:item => "BEER", :num => 2, :cost => 20.00},
 # {:item => "CHEESE", :num => 3, :cost => 15.00}
 
+# coupons hash: 
+# {:item => "AVOCADO", :num => 2, :cost => 5.00},
+# {:item => "BEER", :num => 2, :cost => 20.00},
+# {:item => "CHEESE", :num => 3, :cost => 15.00}
+
 
 def apply_coupons(cart, coupons)
     coupons.each do |coupon|
@@ -57,15 +62,14 @@ def apply_coupons(cart, coupons)
 end
 
 
-  
-        
 
-
-# def apply_clearance(cart)
-#   cart.each do |food, food_info|
-#     if food[:clearace] == true
-#       food[:price] = ((food[:price] * (0.8)).round(3)
-# end
+def apply_clearance(cart)
+  cart.each do |food, food_info|
+    if food_info[:clearance] == true
+      food_info[:price] = (food_info[:price] * (0.8)).round(2)
+    end
+  end
+end
 
 # def checkout(cart, coupons)
 #   # code here
