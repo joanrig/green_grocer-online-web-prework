@@ -54,7 +54,7 @@ def apply_coupons(cart, coupons)
         if cart["#{food} W/COUPON"]
           cart["#{food} W/COUPON"][:count] += 1
         else
-          cart["#{food} W/COUPON"] = {:price => coupon[:cost], :clearance => cart[food][:clearance], :count => 1}
+          cart["#{food} W/COUPON"] = {price: coupon[:cost], :clearance => cart[food][:clearance], count: 1}
         end
       end
     end
@@ -71,6 +71,18 @@ def apply_clearance(cart)
   end
 end
 
-# def checkout(cart, coupons)
-#   # code here
-# end
+
+# cart food format: 
+#{"AVOCADO" => {:price => 3.00, :clearance => true, :count => 3}}
+
+def checkout(cart, coupons)
+  cart = consolidate_cart(cart)
+  cart = apply_coupons(cart, coupons)
+  cart = apply_clearance(cart)
+   
+  total = []
+  cart.each do |food, food_info|
+    total += food_info[:price] * food_info[:count]
+  end
+  binding.pry
+end
