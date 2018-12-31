@@ -46,22 +46,17 @@ def apply_coupons(cart, coupons)
       if cart[food] && cart[food][:count] >= coupon[:num]
         cart[food][:count] -= coupon[:num]
         
-        food2 = "#{food} W/COUPON"
-        
-        if cart[food2]
-          binding.pry
-          cart[food2][:count] += 1
-        else 
-          cart[food2] = {:price => coupon[:cost], :clearance => food[:clearance], :count => 1}
+        if cart["#{food} W/COUPON"]
+          cart["#{food} W/COUPON"][:count] += 1
+        else
+          cart["#{food} W/COUPON"] = {:price => coupon[:cost], :clearance => cart[food][:clearance], :count => 1}
         end
       end
     end
   cart
-  binding.pry
 end
 
 
- 
   
         
 
