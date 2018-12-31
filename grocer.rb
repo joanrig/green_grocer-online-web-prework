@@ -1,4 +1,4 @@
-"require pry"
+require "pry"
 
 # {"AVOCADO" => {:price => 3.00, :clearance => true}},
 # {"KALE" => {:price => 3.00, :clearance => false}},
@@ -24,51 +24,52 @@ end
 # cart food format: 
 #{"AVOCADO" => {:price => 3.00, :clearance => true, :count => 3}}
 
+
 # coupons format: --------
 # {:item => "AVOCADO", :num => 2, :cost => 5.00},
 
 #desired outcome for couponed item:
-#   {"AVOCADO" => {:price => 3.0, :clearance => true, :count => 1},
+#   {"AVOCADO" => {:price => 3.0, :clearance => true, :count => 3},
 #   "AVOCADO W/COUPON" => {:price => 5.0, :clearance => true, :count => 1},
+#{"AVOCADO" => {:price => 3.0, :clearance => true, :count => 1},
 
+# coupons hash: 
+# {:item => "AVOCADO", :num => 2, :cost => 5.00},
+# {:item => "BEER", :num => 2, :cost => 20.00},
+# {:item => "CHEESE", :num => 3, :cost => 15.00}
 
 
 def apply_coupons(cart, coupons)
-  cart.each do |food|
-    coupons.each do |coupon, item|
-    
- #base case
- #is there a coupon for item in cart?; 
- #did buyer purchase at least min required for coupon price?
-      if food == item && food[:count] >= coupon[:num]
+    coupons.each do |coupon|
+    food = coupon[:item] 
+      if cart[food] && cart[food][:count] >= coupon[:num]
+        cart[food][:count] -= coupon[:num]
         
- #reduce food count by number affected by coupon       
-        food[:count] = food[:count] - coupon[:num]
-      
-        
- #if there is already a couponed item in cart, add 'count' and increment
-        if cart.has_key?("#{food} W/COUPON")
-          cart["#{food} W/COUPON"][:count] += 1
-            
-  #otherwise, add that couponed item to cart
+        food2 = "#{food} W/COUPON"
+        if cart[food2]
+          cart[food2][:count] += 1
         else 
-          cart[food] = "#{food} W/COUPON"
-          cart["#{food} W/COUPON"] = {:price => coupon[:cost], :clearance => food[:clearance], :count => 1}
+          cart[food2] = nil
+          cart[food2] = {:price => coupon[:cost], :clearance => food[:clearance], :count => 1}
         end
       end
     end
-  end
   cart
-  #binding.pry
+  binding.pry
 end
+
+
+ 
   
         
 
 
-def apply_clearance(cart)
-  # code here
-end
+# def apply_clearance(cart)
+#   cart.each do |food, food_info|
+#     if food[:clearace] == true
+#       food[:price] = ((food[:price] * (0.8)).round(3)
+# end
 
-def checkout(cart, coupons)
-  # code here
-end
+# def checkout(cart, coupons)
+#   # code here
+# end
