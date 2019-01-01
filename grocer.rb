@@ -84,5 +84,6 @@ def checkout(cart: [], coupons: [])
   cart.each do |food, food_info|
     total += food_info[:price] * food_info[:count]
   end
+  total
   #binding.pry
 end
