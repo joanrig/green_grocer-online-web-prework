@@ -81,8 +81,8 @@ def checkout(cart, coupons)
   coupons_applied = apply_coupons(consolidated, coupons)
   clearance_applied = apply_clearance(coupons_applied)
   
-  clearance_applied.each do |food|
-    food.each do |food_info|
+  clearance_applied.each do |food, food_name|
+    food_name.each do |food_info|
       binding.pry
    
       total = 0
