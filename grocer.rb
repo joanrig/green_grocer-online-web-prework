@@ -5,7 +5,7 @@
 # {"BLACK_BEANS" => {:price => 2.50, :clearance => false}}
 # {"AVOCADO" => {:price => 3.00, :clearance => true}},
 
-def consolidate_cart(cart:[])
+def consolidate_cart(cart)
   merged = {}
     cart.each do |food_hash|
       food_hash.each do |name, price_hash|
@@ -45,7 +45,7 @@ end
 # {:item => "CHEESE", :num => 3, :cost => 15.00}
 
 
-def apply_coupons(cart:[], coupons:[])
+def apply_coupons(cart, coupons)
     coupons.each do |coupon|
     food = coupon[:item] 
     
@@ -64,7 +64,7 @@ end
 
 
 
-def apply_clearance(cart:[])
+def apply_clearance(cart)
   cart.each do |food, food_info|
     if food_info[:clearance] == true
       food_info[:price] = (food_info[:price] * (0.8)).round(2)
@@ -76,11 +76,12 @@ end
 # cart food format: 
 #{"AVOCADO" => {:price => 3.00, :clearance => true, :count => 3}}
 
-def checkout(cart:[], coupons:[])
+def checkout(cart, coupons)
     
   cart = consolidate_cart(cart: cart)
   cart = apply_coupons(cart: cart, coupons: coupons)
   cart = apply_clearance(cart: cart)
+  binding.pry
    
   total = 0
   total += food_info[:price] * food_info[:count]
