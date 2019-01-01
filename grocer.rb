@@ -85,5 +85,5 @@ def checkout(cart, coupons)
   cart.each do |food, food_info|
     total += food_info[:price] * food_info[:count]
   end
-  tota
+  total
 end
