@@ -76,9 +76,6 @@ end
 #{"AVOCADO" => {:price => 3.00, :clearance => true, :count => 3}}
 
 def checkout(cart, coupons)
-  cart.each do |food, food_info|
-    food_info.each do |food_name|
-  
   cart = consolidate_cart(cart: food_name)
   cart = apply_coupons(cart: cart, coupons: coupons)
   cart = apply_clearance(cart: cart)
