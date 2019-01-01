@@ -77,9 +77,9 @@ end
 #{"AVOCADO" => {:price => 3.00, :clearance => true, :count => 3}}
 
 def checkout(cart, coupons)
-  cart = consolidate_cart(cart)
-  cart = apply_coupons(cart, coupons)
-  cart = apply_clearance(cart)
+  consolidated = consolidate_cart(cart)
+  coupons_applied = apply_coupons(consolidated, coupons)
+  clearance_applied = apply_clearance(coupons_applied)
   binding.pry
   
    
