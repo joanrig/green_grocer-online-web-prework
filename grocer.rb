@@ -1,4 +1,4 @@
-require "pry"
+ require "pry"
 
 # {"AVOCADO" => {:price => 3.00, :clearance => true}},
 # {"KALE" => {:price => 3.00, :clearance => false}},
@@ -30,6 +30,7 @@ end
 
 #desired outcome for couponed item:
 #   {"AVOCADO" => {:price => 3.0, :clearance => true, :count => 3},
+
 #   "AVOCADO W/COUPON" => {:price => 5.0, :clearance => true, :count => 1},
 #{"AVOCADO" => {:price => 3.0, :clearance => true, :count => 1},
 
@@ -76,13 +77,21 @@ end
 #{"AVOCADO" => {:price => 3.00, :clearance => true, :count => 3}}
 
 def checkout(cart, coupons)
-  cart = consolidate_cart(cart)
-  cart = apply_coupons(cart, coupons)
-  cart = apply_clearance(cart)
-   
-  total = []
-  cart.each do |food, food_info|
+  consolidated = consolidate_cart(cart)
+  coupons_applied = apply_coupons(consolidated, coupons)
+  clearance_applied = apply_clearance(coupons_applied)
+  
+  total = 0
+  
+  clearance_applied.each do |food_name, food_info|
     total += food_info[:price] * food_info[:count]
   end
-  binding.pry
+  
+  if total > 100
+    total = total * 0.9
+  end
+  total
+  #binding.pry
 end
+  
+
