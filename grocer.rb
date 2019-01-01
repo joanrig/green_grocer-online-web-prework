@@ -85,11 +85,13 @@ def checkout(cart, coupons)
   clearance_applied.each do |food|
     food.each do |food_info|
    
-  total = 0
-  total += food_info[:price] * food_info[:count]
+      total = 0
+      total += food_info[:price] * food_info[:count]
   
-  if total > 100
-    total = total * 0.9
+      if total > 100
+        total = total * 0.9
+      end
+    end
   end
   puts total
 end
