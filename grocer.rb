@@ -30,6 +30,7 @@ end
 
 #desired outcome for couponed item:
 #   {"AVOCADO" => {:price => 3.0, :clearance => true, :count => 3},
+
 #   "AVOCADO W/COUPON" => {:price => 5.0, :clearance => true, :count => 1},
 #{"AVOCADO" => {:price => 3.0, :clearance => true, :count => 1},
 
