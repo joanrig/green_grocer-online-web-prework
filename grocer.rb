@@ -82,13 +82,12 @@ def checkout(cart: [], coupons: [])
   cart = apply_clearance(cart: cart)
    
   total = 0
-  
-    total += food_info[:price] * food_info[:count]
-  end
+  total += food_info[:price] * food_info[:count]
   
   if total > 100
     total = total * 0.9
   end
   total
+end
   
 
