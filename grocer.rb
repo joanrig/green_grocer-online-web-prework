@@ -76,13 +76,13 @@ end
 #{"AVOCADO" => {:price => 3.00, :clearance => true, :count => 3}}
 
 def checkout(cart, coupons)
-  cart = consolidate_cart(cart)
-  cart = apply_coupons(cart, coupons)
-  cart = apply_clearance(cart)
+  cart = consolidate_cart(cart: cart)
+  cart = apply_coupons(cart: cart, coupons: coupons)
+  cart = apply_clearance(cart: cart)
    
-  total = []
+  total = 0
   cart.each do |food, food_info|
     total += food_info[:price] * food_info[:count]
   end
-  binding.pry
+  #binding.pry
 end
