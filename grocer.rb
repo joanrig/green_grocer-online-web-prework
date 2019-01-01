@@ -81,16 +81,16 @@ def checkout(cart, coupons)
   coupons_applied = apply_coupons(consolidated, coupons)
   clearance_applied = apply_clearance(coupons_applied)
   
-  clearance_applied.each do |food_name, food_info|
-    binding.pry
-   
-    total = 0
-    total += food_info[:price] * food_info[:count]
+  total = 0
   
-    if total > 100
-      total = total * 0.9
-    end
+  clearance_applied.each do |food_name, food_info|
+    total += food_info[:price] * food_info[:count]
   end
+  
+  if total > 100
+    total = total * 0.9
+  end
+
   puts total
 end
   
