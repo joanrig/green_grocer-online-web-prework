@@ -85,5 +85,12 @@ def checkout(cart, coupons)
   cart.each do |food, food_info|
     total += food_info[:price] * food_info[:count]
   end
+  
+  if total > 100
+    puts total
+    total = total * 0.9
+  end
   total
+end
+  
 end
